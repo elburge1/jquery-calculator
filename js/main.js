@@ -15,14 +15,33 @@ $(document).ready(function(){
   var displayTotal = ' ' + leftInput + ' ' + operand + ' ' + rightInput + '';
 
   $('span').on('click', function(){
-    if ($(this).hasClass('operator'))  {
+    if ($(this).attr('id') === 'calc') {
+      leftInput = parseInt(leftInput);
+      rightInput = parseInt(rightInput);
+      if (operand = 'x') {
+        console.log(leftInput * rightInput);
+      }
+      else if (operand = '+'){
+        console.log(leftInput + rightInput);
+      }
+      else if (operand = '-'){
+        console.log(leftInput - rightInput);
+      }
+      else {
+        console.log(leftInput / rightInput);
+      }
+      rightInput = '';
+      leftInput = '';
+      operand = '';
+    }
+    else if ($(this).hasClass('operator'))  {
       operand += $(this).text();
     }
     else if (operand === '') {
         leftInput += $(this).text();
         console.log(leftInput);
     }
-    else {
+    else if (operand !== '') {
       rightInput += $(this).text();
       console.log(leftInput + operand + rightInput);
     }
