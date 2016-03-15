@@ -12,23 +12,31 @@ $(document).ready(function(){
 
   var operand = '';
 
-  var displayTotal = ' ' + leftInput + ' ' + operand + ' ' + rightInput + '';
+  var displayTotal = '0';
+
+  $('#screen').text(displayTotal);
 
   $('span').on('click', function(){
-    if ($(this).attr('id') === 'calc') {
+    if ($(this).attr('id') === 'cancel'){
+      leftInput = '';
+      rightInput = '';
+      operand = '';
+       $('#screen').text('0');
+    }
+    else if ($(this).attr('id') === 'calc') {
       leftInput = parseInt(leftInput);
       rightInput = parseInt(rightInput);
-      if (operand = 'x') {
-        console.log(leftInput * rightInput);
+      if (operand === 'x') {
+        $('#screen').text(leftInput * rightInput);
       }
-      else if (operand = '+'){
-        console.log(leftInput + rightInput);
+      else if (operand === '+'){
+        $('#screen').text(leftInput + rightInput);
       }
-      else if (operand = '-'){
-        console.log(leftInput - rightInput);
+      else if (operand === '-'){
+        $('#screen').text(leftInput - rightInput);
       }
-      else {
-        console.log(leftInput / rightInput);
+      else{
+        $('#screen').text(leftInput / rightInput);
       }
       rightInput = '';
       leftInput = '';
@@ -36,14 +44,15 @@ $(document).ready(function(){
     }
     else if ($(this).hasClass('operator'))  {
       operand += $(this).text();
+      $('#screen').text(leftInput + operand);
     }
     else if (operand === '') {
-        leftInput += $(this).text();
-        console.log(leftInput);
+      leftInput += $(this).text();
+      $('#screen').text(leftInput);
     }
     else if (operand !== '') {
       rightInput += $(this).text();
-      console.log(leftInput + operand + rightInput);
+      $('#screen').text(leftInput + operand + rightInput);
     }
   })
 });
